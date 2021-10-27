@@ -70,7 +70,7 @@ OBJ=$(OUTDIR)/dump.o $(OUTDIR)/histo.o $(OUTDIR)/histospt.o $(OUTDIR)/kbhit.o $(
 # Configuration: Debug
 #
 ifeq "$(CFG)" "Debug"
-COMPILE=$(GCC) -c $(ARCH_OPT) $(DEFS) -fno-stack-protector -std=c++17 -O0 -g -o "$(OUTDIR)/$(*F).o" -I$(INCLUDEDIR) "$<"
+COMPILE=$(GCC) -c $(ARCH_OPT) $(DEFS) -fno-stack-protector -std=c++17 -O0 -Wno-null-conversion -g -o "$(OUTDIR)/$(*F).o" -I$(INCLUDEDIR) "$<"
 #LINK=$(GCC) $(ARCH_OPT) -g -o "$(OUTFILE)" $(PIC_OPT) $(OBJ) $(SCCORDIR)/sccorlib.a
 endif
 
@@ -78,7 +78,7 @@ endif
 # Configuration: Release
 #
 ifeq "$(CFG)" "Release"
-COMPILE=$(GCC) -c $(ARCH_OPT) $(DEFS) -fno-stack-protector -std=c++17 -O0 -o "$(OUTDIR)/$(*F).o" -I$(INCLUDEDIR) "$<"
+COMPILE=$(GCC) -c $(ARCH_OPT) $(DEFS) -fno-stack-protector -std=c++17 -O0 -Wno-null-conversion -o "$(OUTDIR)/$(*F).o" -I$(INCLUDEDIR) "$<"
 #LINK=$(GCC) $(ARCH_OPT) -o "$(OUTFILE)" $(PIC_OPT) $(OBJ) $(SCCORDIR)/sccorlib.a
 endif
 

@@ -650,7 +650,7 @@ void sleepMs( unsigned long sleepms )
 void wait( unsigned long waitMs )
 {
    // Delay for at least waitMs milliseconds.
-   auto go = std::chrono::system_clock::now() + std::chrono::milliseconds( waitMs );
+   auto go = std::chrono::system_clock::now() + std::chrono::milliseconds( waitMs ) ;
    when( std::chrono::system_clock::now() >= go ) ; 
 }
 
@@ -660,9 +660,10 @@ void wait( unsigned long waitMs )
 * Purpose: waits for an extended period while continuing other coroutines.     *
 *          The waiting period is interrupted if the boolean becomes false.     *
 *******************************************************************************/
-void waitEx( unsigned long waitMs, bool *continuing )
+void waitEx( unsigned long waitMs, bool *continuing, bool *canceling )
 {
-   auto go = std::chrono::system_clock::now() + std::chrono::milliseconds( waitMs );
-   when( ( std::chrono::system_clock::now() >= go ) || *continuing == false ) ; 
+   auto go = std::chrono::system_clock::now() + std::chrono::milliseconds( waitMs ) ;
+   when( ( std::chrono::system_clock::now() >= go ) || *continuing == false  
+        || ( canceling != NULL && *canceling == true ) ) ; 
 }
 

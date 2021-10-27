@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# macOS detritis
+.DS_Store

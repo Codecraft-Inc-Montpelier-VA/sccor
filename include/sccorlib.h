@@ -36,6 +36,8 @@
                          Define Macros
 ------------------------------------------------------------*/
 
+typedef unsigned char byte ;
+
 /* Data/Function Scope */
 #define HIDE static
 
@@ -52,9 +54,8 @@
 
 typedef void (*COROUTINE)( void ) ;
 
-
 /*------------------------------------------------------------
-                          *** API ***
+                              API
 ------------------------------------------------------------*/
 
 void  cobegin( int n, ... ) ;
@@ -63,7 +64,14 @@ int   getCoroutineCount( void ) ;
 void  invoke( COROUTINE coroutine, int argc, ... ) ;
 void  sleepMs( unsigned long sleepMs ) ;
 void  wait( unsigned long waitMs ) ;
-void  waitEx( unsigned long waitMs, bool *continuing ) ;
+void  waitEx( unsigned long waitMs, bool *continuing, 
+              bool *canceling = NULL ) ;
+
+/*------------------------------------------------------------
+                           Debugging
+------------------------------------------------------------*/
+
+void dump( const void * const pMemory, int size, byte *pShow = 0 ) ;
 
 #endif // SCCORLIB_H
 
