@@ -662,8 +662,11 @@ void wait( unsigned long waitMs )
 *******************************************************************************/
 void waitEx( unsigned long waitMs, bool *continuing, bool *canceling )
 {
-   auto go = std::chrono::system_clock::now() + std::chrono::milliseconds( waitMs ) ;
-   when( ( std::chrono::system_clock::now() >= go ) || *continuing == false  
-        || ( canceling != NULL && *canceling == true ) ) ; 
+   auto go = std::chrono::high_resolution_clock::now() 
+             + std::chrono::milliseconds( waitMs ) ;
+
+   when( ( std::chrono::high_resolution_clock::now() >= go ) 
+         || *continuing == false  
+         || ( canceling != NULL && *canceling == true ) ) ; 
 }
 
